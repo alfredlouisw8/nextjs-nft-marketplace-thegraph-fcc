@@ -31,6 +31,8 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
     const hideModal = () => setShowModal(false)
     const dispatch = useNotification()
 
+    //console.log(price, nftAddress, tokenId, marketplaceAddress, seller)
+
     const { runContractFunction: getTokenURI } = useWeb3Contract({
         abi: nftAbi,
         contractAddress: nftAddress,
@@ -101,7 +103,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
     }
 
     return (
-        <div>
+        <div className="m-2">
             <div>
                 {imageURI ? (
                     <div>
@@ -118,8 +120,9 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
                             onClick={handleCardClick}
                         >
                             <div className="p-2">
-                                <div className="flex flex-col items-end gap-2">
+                                <div className="flex flex-col items-center gap-2">
                                     <div>#{tokenId}</div>
+                                    <div>NFT Address: {nftAddress}</div>
                                     <div className="italic text-sm">
                                         Owned by {formattedSellerAddress}
                                     </div>
@@ -129,9 +132,11 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
                                         height="200"
                                         width="200"
                                     />
-                                    <div className="font-bold">
-                                        {ethers.utils.formatUnits(price, "ether")} ETH
-                                    </div>
+                                    {price && (
+                                        <div className="font-bold">
+                                            {ethers.utils.formatUnits(price, "ether")} ETH
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </Card>

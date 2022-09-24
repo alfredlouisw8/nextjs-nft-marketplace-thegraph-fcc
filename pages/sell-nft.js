@@ -9,10 +9,10 @@ import nftMarketplaceAbi from "../constants/NftMarketplace.json"
 import networkMapping from "../constants/networkMapping.json"
 import { useEffect, useState } from "react"
 
-export default function Home() {
+export default function SellNft() {
     const { chainId, account, isWeb3Enabled } = useMoralis()
     const chainString = chainId ? parseInt(chainId).toString() : "31337"
-    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+    const marketplaceAddress = networkMapping[chainString].NftMarketplace
     const dispatch = useNotification()
     const [proceeds, setProceeds] = useState("0")
 

@@ -8,10 +8,9 @@ import { useQuery } from "@apollo/client"
 export default function Home() {
     const { isWeb3Enabled, chainId } = useMoralis()
     const chainString = chainId ? parseInt(chainId).toString() : "31337"
-    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+    const marketplaceAddress = networkMapping[chainString].NftMarketplace
 
     const { loading, error, data: listedNfts } = useQuery(GET_ACTIVE_ITEMS)
-
     return (
         <div className="container mx-auto">
             <h1 className="py-4 px-4 font-bold text-2xl">Recently Listed</h1>
